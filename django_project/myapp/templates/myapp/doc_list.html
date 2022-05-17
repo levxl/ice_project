@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block title %} Catalog {% endblock title %}
+{% block content %}
+
+      <main class="main-catalog">
+        <ul class="breadcrumbs">
+          <li class="underline"><a href="{% url 'home' %}">Главная</a></li>
+          <li>&raquo;</li>
+          <li class="underline"><a href="#">Каталог</a></li>
+          <li>&raquo;</li>
+          <li>Сливочное</li>
+        </ul>
+        <h1>Сливочное мороженое</h1>
+
+        <section class="filters">
+          <h2 class="visually-hidden">Фильтры</h2>
+          <form >
+            <div class="sort-first">
+              <fieldset class="main-sort">
+                <legend>Сортировка:</legend>
+                <select class="main-sort-select" name="sort" id="sort">
+                  <option value="popularity" selected>по популярности</option>
+                  <option value="inexpensive">сначала не дорогие</option>
+                  <option value="expensive">сначала дорогие</option>
+                  <option value="fat">по жирности</option>
+                </select>
+              </fieldset>
+
+              <fieldset class="price-sort">
+                <legend> Цена: <span>100</span> руб. &ndash; <span>500</span> руб.</legend>
+                <div class="range-filter">
+                  <div class="range-controls">
+                    <div class="scale">
+                      <div class="bar" ></div>
+                    </div>
+                    <div class="toggle toggle-min"></div>
+                    <div class="toggle toggle-max"></div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="fat-sort">
+                <legend>Жирность:</legend>
+                <ul>
+                  {% for fats in view.get_fat_content  %}
+                  <li>
+                    <input class="visually-hidden fat" type="radio" name="fat" id="zero">
+                    <label for="zero">{{ fats.fat_content }}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </fieldset>
+            </div>
+
+            <div class="sort-second">
+              <div class="sort-second-title">Наполнители:</div>
+              <div class="filler-sort">
+                <ul>
+                  <li>
+                    <input class="visually-hidden filler" type="checkbox" id="choko" checked>
+                    <label for="choko">шоколадные</label>
+                  </li>
+                  <li>
+                      <input class="visually-hidden filler" type="checkbox" id="sugar" checked>
+                      <label for="sugar">сахарные присыпки</label>
+                  </li>
+                  <li>
+                      <input class="visually-hidden filler" type="checkbox" id="fruit">
+                      <label for="fruit">фрукты</label>
+                  </li>
+                  <li>
+                      <input class="visually-hidden filler" type="checkbox" id="syrop">
+                      <label for="syrop">сиропы</label>
+                  </li>
+                  <li>
+                      <input class="visually-hidden filler" type="checkbox" id="jam">
+                      <label for="jam">джемы</label>
+                  </li>
+                </ul>
+                <button type="submit">Применить</button>
+              </div>
+            </div>
+          </form>
+        </section>
+        <section>
+     
+        <ul class="catalog-list">
+          {% for ice in doc_list %}
+          <li class="catalog-item">
+            <a href="">
+              <div class="user-choise">
+                <img src="{{ ice.img.url }} "  width="267" height="267" alt="">
+                <h2 class="catalog-title">{{ ice.title }}</h2>
+                <div class="catalog-container">
+                  <p class="catalog-price">{{ ice.price }}&#8381; <span>/кг</span></p>
+                </div>
+              </div>
+            </a>
+            <button class="catalog-button button" type="button" id="open1">Быстрый просмотр</button>
+          </li>
+          <div class="pop_up" id="pop_up1">
+            <div class="pop_up_container" id="pop_up_container1">
+                <div class="pop_up_body1" id="pop_up_body1">
+                  <p>Подробная информация</p>
+                  <from method="post">
+                    <img src="{{ ice.img.url }}" alt="">
+                    <h2 class="catalog-title">{{ ice.title }}</h2>
+                    <h2 class="catalog-title">{{ ice.desc }}</h2>
+                    <p class="catalog-price">{{ ice.price }}&#8381; <span>/кг</span></p>
+                  </from>
+                  <div class="pop_up_close" id="pop_up_close1">&#10006</div>
+                </div>                  
+            </div>
+          </div>
+          {% endfor %}
+          <!-- 1.сделать категории на сайте
+          2.запушить три проекта на гитхаб -->
+
+          </ul>
+        
+        </section>
+        <div class="pagination-container">
+          <ul class="pagination">
+            <li class="pagination-link first-page">&lt;</li>
+            <li class="pagination-link page-current">1</li>
+            <li class="pagination-link"><a href="#">2</a></li>
+            <li class="pagination-link"><a href="#">3</a></li>
+            <li class="pagination-link"><a href="#">4</a></li>
+            <li class="pagination-link"><a href="#">5</a></li>
+            <li class="pagination-link arrow-right"><a href="#">></a></li>
+          </ul>
+          </div>
+        </main>
+{% endblock content %}
+
+
+

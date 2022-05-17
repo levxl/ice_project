@@ -1,0 +1,68 @@
+{% load static %}
+<header>
+    <div class="header">
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div> 
+      </div> 
+    </div> 
+    <nav class="navigation">
+      <a href="{% url 'home' %}">
+      <img class="logo" src="{% static 'img/svg/logo.svg' %}" width="154" height="64" alt="Логотип ГлейсиШоп">
+    </a>
+      <ul class="navigation-list">
+        <li class="navigation-item-title">
+          <a href="{% url 'catalog' %}">Каталог</a>
+
+          <div class="navigation-block">
+            <ul class="navigation-catalog">
+              <li class="navigation-catalog-novelty">Новинки</li>
+              <li class="navigation-catalog-item"><a href="#">Сливочное</a></li>
+              <li class="navigation-catalog-item"><a href="#">Щербеты</a></li>
+              <li class="navigation-catalog-item"><a href="#">Фруктовый лед</a></li>
+              <li class="navigation-catalog-item"><a href="#">Мелорин</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="user-navigation">
+        <li class="user-navigation-item">
+          <button class="user-search" type="submit"></button>
+          <form class="search" action="{% url 'search' %}" method="get">
+            <input type="search" name="q" id="search" placeholder="Поиск">
+          </form>
+        </li>
+        {% block content %}
+        <li class="user-navigation-item">
+          <div class="button_open">
+            <button class="user-entrance" type="button" id="open">Вход</button>
+          </div>
+          
+          <div class="pop_up" id="pop_up">
+            <div class="pop_up_container" id="pop_up_container">
+                <div class="pop_up_body" id="pop_up_body">
+                  <p>Регистарция</p>
+                  <from method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Логин">
+                    <input type="email" placeholder="email">
+                    <input type="password" placeholder="Пароль">
+                    <input type="password" placeholder="Повтор пароля">
+                    <button type="submit">Зарегистрироваться</button>
+                  </from>
+                  <div class="pop_up_close" id="pop_up_close">&#10006</div>
+                </div>                  
+            </div>
+          </div>
+        </li>
+        {% endblock content %}
+        <li class="user-navigation-item">
+          <button class="user-basket" type="button">Пусто</button>
+        </li>
+      </ul>
+    </nav>
+    <div class="worktime">
+      <p>С 10 до 20, ежедневно</p>
+      <p>8 812 450-25-25</p>
+    </div>
+</header>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>{% block title %}  {% endblock title %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+<body>
+  <div class="main-container">
+    {% include 'include/header.html' %}
+    
+    {% block content %}
+    
+    {% endblock content %}
+    
+    {% include 'include/footer.html' %}
+  </div>
+  <script src="{% static 'js/modal_open.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/modal.js' %}"></script>
+  <script src="{% static 'js/modal.min.js' %}"></script>
+  <script src="{% static 'js/slider.js' %}"></script>
+  <script src="{% static 'js/slider.min.js' %}"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
+  <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+</body>
+</html>
