@@ -56,10 +56,10 @@
                 <div class="sort-second-title">Наполнители:</div>
                 <div class="filler-sort">
                   <ul>
-                    {% for category in view.get_filter %}
+                    {% for fillers in view.get_filter %}
                     <li>
                       <input class="visually-hidden filler" type="checkbox" id="choko">
-                      <label for="choko">{{ category.name }}</label>
+                      <label for="choko">{{ fillers.name }}</label>
                     </li>
                     {% endfor %}
                   <button type="submit">Применить</button>

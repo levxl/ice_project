@@ -1,6 +1,5 @@
-import queue
-from unicodedata import category
-from .models import Doc, IceFatContent, Category
+
+from .models import Doc, IceFatContent, Fillers
 from django.views.generic import ListView
 from django.shortcuts import render
 
@@ -18,7 +17,7 @@ class IceFatsContent:
         return IceFatContent.objects.all()
 
     def get_filter(self):
-        return Category.objects.filter()
+        return Fillers.objects.filter()
 
 class IceView(IceFatsContent,ListView):
     model = Doc
@@ -31,5 +30,5 @@ class Search(ListView):
 
 class FilterIceView(IceFatContent, ListView):
     def get_queryset(self):
-        queryset = Doc.objects.filter(category__in=self.request.GET.getlist("category"))
+        queryset = Doc.objects.filter(Fillers=self.request.GET.getlist("category"))
         return queryset
