@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Doc)
 admin.site.register(IceFatContent)
+admin.site.register(Category)

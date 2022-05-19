@@ -45,45 +45,30 @@
                   {% for fats in view.get_fat_content  %}
                   <li>
                     <input class="visually-hidden fat" type="radio" name="fat" id="zero">
-                    <label for="zero">{{ fats.fat_content }}</label>
+                    <label for="zero">до {{ fats.fat_content }}</label>
                   </li>
                   {% endfor %}
                 </ul>
               </fieldset>
             </div>
-
-            <div class="sort-second">
-              <div class="sort-second-title">Наполнители:</div>
-              <div class="filler-sort">
-                <ul>
-                  <li>
-                    <input class="visually-hidden filler" type="checkbox" id="choko" checked>
-                    <label for="choko">шоколадные</label>
-                  </li>
-                  <li>
-                      <input class="visually-hidden filler" type="checkbox" id="sugar" checked>
-                      <label for="sugar">сахарные присыпки</label>
-                  </li>
-                  <li>
-                      <input class="visually-hidden filler" type="checkbox" id="fruit">
-                      <label for="fruit">фрукты</label>
-                  </li>
-                  <li>
-                      <input class="visually-hidden filler" type="checkbox" id="syrop">
-                      <label for="syrop">сиропы</label>
-                  </li>
-                  <li>
-                      <input class="visually-hidden filler" type="checkbox" id="jam">
-                      <label for="jam">джемы</label>
-                  </li>
-                </ul>
-                <button type="submit">Применить</button>
+            <form action="{% url 'filter' %}" method="get">
+              <div class="sort-second">
+                <div class="sort-second-title">Наполнители:</div>
+                <div class="filler-sort">
+                  <ul>
+                    {% for category in view.get_filter %}
+                    <li>
+                      <input class="visually-hidden filler" type="checkbox" id="choko">
+                      <label for="choko">{{ category.name }}</label>
+                    </li>
+                    {% endfor %}
+                  <button type="submit">Применить</button>
+                </div>
               </div>
-            </div>
+            </form>
           </form>
         </section>
         <section>
-     
         <ul class="catalog-list">
           {% for ice in doc_list %}
           <li class="catalog-item">
