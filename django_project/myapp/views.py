@@ -19,7 +19,7 @@ class IceFatsContent:
     def get_filter(self):
         return Fillers.objects.filter()
 
-class IceView(IceFatsContent,ListView):
+class IceView(IceFatsContent, ListView):
     model = Doc
     queryset = Doc.objects.filter()
 
