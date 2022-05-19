@@ -12,6 +12,13 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
+class IceFatContent(models.Model):
+    fat_content = models.CharField("Жирность", max_length=60, blank=True)
+    url = models.SlugField(max_length=150, unique=True)
+    class Meta:
+        verbose_name = 'Жирность'
+        verbose_name_plural = 'Жирности'
+
 class Doc(models.Model):
     img = models.ImageField("Изоброжения", upload_to="movie_shots/")
     price = models.CharField("Цена", max_length=50, blank=True)
@@ -20,13 +27,8 @@ class Doc(models.Model):
     category = models.ForeignKey(
         Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True
     )
+    fat_content = models.ManyToManyField(IceFatContent, verbose_name="Жирность")
     class Meta:
         verbose_name = 'Мороженое'
         verbose_name_plural = 'Мороженые'
 
-class IceFatContent(models.Model):
-    fat_content = models.CharField("Жирность", max_length=60, blank=True)
-
-    class Meta:
-        verbose_name = 'Жирность'
-        verbose_name_plural = 'Жирности'
