@@ -5,16 +5,16 @@ class Fillers(models.Model):
     name = models.CharField("Наполнители", max_length=60,)
     url = models.SlugField(max_length=150, unique=True)
 
+    def __str__(self):
+        return self.name
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Наполнитель'
+        verbose_name_plural = 'Наполнители'
+    
 
 class IceFatContent(models.Model):
     fat_content = models.CharField("Жирность", max_length=60, blank=True)
     url = models.SlugField(max_length=150, unique=True)
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         verbose_name = 'Жирность'

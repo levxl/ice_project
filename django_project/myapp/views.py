@@ -30,5 +30,5 @@ class Search(ListView):
 
 class FilterIceView(IceFatContent, ListView):
     def get_queryset(self):
-        queryset = Doc.objects.filter(Fillers=self.request.GET.getlist("category"))
+        queryset = Doc.objects.filter(Fillers=self.request.GET.getlist())
         return queryset
