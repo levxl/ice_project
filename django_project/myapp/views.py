@@ -1,15 +1,10 @@
-
-from .models import Doc, IceFatContent, Fillers
-from django.views.generic import ListView
+from .models import *
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 
 def home(request):
     return render(request, 'myapp/index.html')
-
-def catalog(request):
-    return render(request, 'myapp/doc_list.html')
-
 
 class IceFatsContent:
     """Жирность"""
@@ -20,8 +15,11 @@ class IceFatsContent:
         return Fillers.objects.filter()
 
 class IceView(IceFatsContent, ListView):
-    model = Doc
-    queryset = Doc.objects.filter()
+    def get(self, request):
+        doc = Doc.objects.all()
+        return render(request, "myapp/doc_list.html", {"doc":doc})
+
+
 
 class Search(ListView):
     paginate_by = 3
